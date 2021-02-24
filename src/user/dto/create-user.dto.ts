@@ -7,6 +7,12 @@ export class CreateUserDto {
     id: string;
 
     @IsString()
+    name: string;
+
+    @IsString()
+    surname: string;
+
+    @IsString()
     email: string;
 
     @IsString()
@@ -16,5 +22,6 @@ export class CreateUserDto {
     role: string;
 
     @IsString()
+    @IsOptional()
     group: string;
 }

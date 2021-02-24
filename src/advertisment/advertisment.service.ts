@@ -12,13 +12,15 @@ import  * as path from 'path';
 export class AdvertismentService {
 
   filter(advertisment : CreateAdvertismentDto) : GetAdvertismentResponse {
-    const {id, content, createdAt } = advertisment;
-    return {id, content, createdAt};
+    const {id, title,content, createdAt } = advertisment;
+    return {id, title, content, createdAt};
 }
 
     async createAdvertisment({
       id,
+      title,
       content,
+      createdAt,
       group,
     } : CreateAdvertismentDto , files : MulterDiskUploadedFiles) : Promise<AdvertismentInterface>{
 
@@ -29,9 +31,19 @@ export class AdvertismentService {
 
             if(id){
               newAdvertisment.id = id;
+              newAdvertisment.createdAt = createdAt;
+  
+              const entity = await Advertisment.find({
+                id: id,
+              });
+          
+              const oldPhoto = entity[0].photoFn
+              if(oldPhoto){
+                fs.unlinkSync(path.join(storageDir(), 'advertisment-photos', oldPhoto));
+              }
             }
         
-          
+            newAdvertisment.title = title;
             newAdvertisment.content = content;
             newAdvertisment.group = group;
 
@@ -93,6 +105,7 @@ export class AdvertismentService {
             root: path.join(storageDir(), 'advertisment-photos', )
           },
         );
+       
       }catch (e){
         res.json({
           error: e.message,

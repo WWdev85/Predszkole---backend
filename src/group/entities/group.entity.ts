@@ -14,6 +14,15 @@ export class Group  extends BaseEntity implements GroupInterface{
     })
     name: string;
 
+    @Column()
+    numberOfChildren: number;
+
+    @Column({
+        default: null,
+        nullable: true,
+    })
+    photoFn: string | null;
+
     @OneToOne(type => StaffMember)
     @JoinColumn()
     teacher: StaffMember;

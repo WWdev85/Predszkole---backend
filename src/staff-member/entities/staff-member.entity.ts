@@ -26,6 +26,12 @@ export class StaffMember extends BaseEntity implements StaffMemberInterface {
     })
     position: string;
 
+    @Column({
+        default: null,
+        nullable: true,
+    })
+    photoFn: string | null;
+
     @OneToOne( type => Group)
     group: Group
 

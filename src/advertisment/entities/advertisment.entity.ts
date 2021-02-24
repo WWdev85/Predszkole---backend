@@ -8,6 +8,10 @@ export class Advertisment extends BaseEntity implements AdvertismentInterface {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+
+    @Column()
+    title: string;
+
     @Column({
         type: 'text',
     })

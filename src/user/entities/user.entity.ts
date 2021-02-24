@@ -10,6 +10,16 @@ export class User extends BaseEntity implements UserInterface {
     @Column({
         length: 255,
     })
+    name: string;
+
+    @Column({
+        length: 255,
+    })
+    surname: string;
+
+    @Column({
+        length: 255,
+    })
     email: string;
 
     @Column({

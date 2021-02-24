@@ -46,7 +46,7 @@ export class AuthService {
         });
 
         if(!user) {
-          return res.json({error: 'Invalid login data!'});
+          return res.json({status: 'Invalid login data!'});
         }
 
         const token = await this.createToken(await this.generateToken(user));
@@ -57,9 +57,9 @@ export class AuthService {
               domain: 'localhost',
               httpOnly: true,
             } )
-            .json({ok: true});
+            .json({status: "ok"});
       }catch (e) {
-        return res.json({error: e.message});
+        return res.json({status: e.message});
       }
     };
 

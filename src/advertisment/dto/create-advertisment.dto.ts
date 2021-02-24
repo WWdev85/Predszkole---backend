@@ -9,6 +9,9 @@ export class CreateAdvertismentDto {
     id: string;
 
     @IsString()
+    title: string;
+
+    @IsString()
     content: string;
 
     @IsDate()

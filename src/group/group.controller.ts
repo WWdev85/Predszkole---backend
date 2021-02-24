@@ -26,12 +26,12 @@ export class GroupController {
   // @UseGuards(PasswordProtectGuard)
   // @UsePassword('admin1')
 
-  @UseGuards(AuthGuard('jwt') , UserRoleGuard)
+  //@UseGuards(AuthGuard('jwt'))
   @Get('/')
   getListOfGroup(
-    @UserObj() user: User,
+   // @UserObj() user: User,
   ) :Promise<GetListOfGroupResponse>{
-    //console.log({user});
+    //console.log(user);
     return this.groupService.getListOfGroup();
   }
  
